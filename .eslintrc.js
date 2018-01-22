@@ -2,19 +2,23 @@
 
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   parserOptions: {
-    parser: 'babel-eslint'
+    sourceType: 'module'
   },
   env: {
     browser: true,
   },
-  // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-  // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-  extends: ['plugin:vue/essential', 'airbnb-base'],
+  extends: 'airbnb-base',
   // required to lint *.vue files
   plugins: [
-    'vue'
+    'html',
+    "shadow-exception"
   ],
+  globals: {
+    "$": true,
+    "jQuery": true,
+  },
   // check if imports actually resolve
   settings: {
     'import/resolver': {
@@ -25,6 +29,12 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    'shadow-exception/no-shadow': [0, {
+      //default values
+      'exceptions': {
+        'err': false
+      }
+    }],
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',
@@ -45,6 +55,7 @@ module.exports = {
       optionalDependencies: ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-shadow': 0,
+  },
 }

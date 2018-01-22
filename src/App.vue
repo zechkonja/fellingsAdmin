@@ -1,23 +1,33 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+<div id="main-app">
+  <app-header></app-header>
+  <router-view/>
+  <app-footer></app-footer>
+</div>
 </template>
 
 <script>
+import router from './router';
+import store from './store';
+import appHeader from './components/Header';
+import appFooter from './components/Footer';
+
 export default {
-  name: 'App',
+  name: 'main-app',
+  components: {
+    'app-header': appHeader,
+    'app-footer': appFooter,
+  },
+  beforeCreate() {
+    if (!store.state.isLogged) {
+      router.push('/login');
+    }
+  },
 };
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#main-app {
+
 }
 </style>
