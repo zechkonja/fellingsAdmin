@@ -1,42 +1,7 @@
 <template>
 <div class="section">
   <div class="columns">
-    <aside class="column is-2">
-      <nav class="menu">
-        <p class="menu-label">
-          General
-        </p>
-        <ul class="menu-list">
-          <li><a class="is-active">Dashboard</a></li>
-          <li><a>Users</a></li>
-        </ul>
-        <p class="menu-label">
-          Administration
-        </p>
-        <ul class="menu-list">
-          <li><a>Team Settings</a></li>
-          <li>
-            <a class="">Manage Your Team</a>
-            <ul>
-              <li><a>Members</a></li>
-              <li><a>Plugins</a></li>
-              <li><a>Add a member</a></li>
-            </ul>
-          </li>
-          <li><a>Invitations</a></li>
-          <li><a>Cloud Storage Environment Settings</a></li>
-          <li><a>Authentication</a></li>
-        </ul>
-        <p class="menu-label">
-          Transactions
-        </p>
-        <ul class="menu-list">
-          <li><a>Payments</a></li>
-          <li><a>Transfers</a></li>
-          <li><a>Balance</a></li>
-        </ul>
-      </nav>
-    </aside>
+    <LeftMenu />
 
     <main class="column">
       <div class="level">
@@ -161,7 +126,7 @@
         </div>
       </div>
 
-      <div class="columns is-multiline">
+      <!-- <div class="columns is-multiline">
         <div class="column is-6">
           <div class="panel">
             <p class="panel-heading">
@@ -210,19 +175,19 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
   </div>
 </div>
 </template>
 
 <script>
-import Expanding from 'vue-bulma-expanding';
+import LeftMenu from './LeftMenu';
 
 export default {
   name: 'home',
   components: {
-    Expanding,
+    LeftMenu,
   },
   props: {
     show: Boolean,

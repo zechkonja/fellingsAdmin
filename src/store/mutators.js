@@ -9,4 +9,8 @@ export default {
     state.userId = '';
   },
 
+  GET_PROFILE(state, profile) {
+    state.profile = profile;
+  },
+
 };

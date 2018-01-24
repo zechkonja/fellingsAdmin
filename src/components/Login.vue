@@ -34,7 +34,7 @@
     </div>
     <hr />
     <div class="columns">
-      <div class="column is-12">
+      <div class="column google-btn is-12">
         <button class="button signin-button" v-on:click="login">Google login</button>
       </div>
     </div>
@@ -64,9 +64,9 @@ export default {
     login() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithPopup(provider).then((result) => {
-        store.dispatch('VERIFY_USER', result.user);
         store.commit('LOGIN_USER');
-        router.push('/');
+        store.dispatch('VERIFY_USER', result.user);
+        router.push('/dashboard');
       }).catch((error) => {
         const errorMessage = error.message;
         throw new Error(errorMessage);
@@ -76,7 +76,7 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
           store.commit('LOGIN_USER');
-          router.push('/');
+          router.push('/dashboard');
         }).catch((error) => {
         // const errorCode = error.code;
         const errorMessage = error.message;
@@ -133,6 +133,9 @@ export default {
   /* IE6-9 */
 }
 
+.google-btn {
+  text-align: center;
+}
 .signin-button {
   /* This is where you control how the button looks. Be creative! */
   display: inline-block;

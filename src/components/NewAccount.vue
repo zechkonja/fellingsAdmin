@@ -45,15 +45,21 @@ export default {
       password: '',
     };
   },
-  beforeCreate() {
-  },
+  beforeCreate() {},
   methods: {
     signUp() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
         (result) => {
-          store.dispatch('VERIFY_USER', result.user);
-          store.commit('LOGIN_USER');
-          router.push('/');
+          const user = firebase.auth().currentUser;
+          user.updateProfile({
+            displayName: ' ',
+          }).then(() => {
+            store.dispatch('VERIFY_USER_EMAIL_PASS', user);
+            store.commit('LOGIN_USER');
+            router.push('/');
+          }).catch((error) => {
+            throw new Error(error.message);
+          });
         },
         (err) => {
           throw new Error(err.message);
